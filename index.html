@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>픽셀에 흩날리는 옷자락</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 id="brand" style="cursor:pointer; text-align:center; color:#fff; margin:0; padding:8px 0;">
+      픽셀에 흩날리는 옷자락
+    </h1>
+  </header>
+
+  <main class="layout">
+    <!-- 스펙 입력 -->
+    <section id="specInput" class="section" aria-label="스펙 입력" style="flex:1 1 40%; min-width:260px;">
+      <h2>스펙 입력</h2>
+      <div class="spec-row" style="display:flex; align-items:center; gap:12px;">
+        <select id="gender" class="tiny" style="height:34px;">
+          <option value="M">남성</option>
+          <option value="F">여성</option>
+        </select>
+        <input id="height" class="tiny" type="number" placeholder="180" min="120" max="230" />
+        <input id="weight" class="tiny" type="number" placeholder="80" min="30" max="200" />
+        <button id="generateBtn" class="button" type="button" style="height:40px;">아바타 생성</button>
+      </div>
+    </section>
+
+    <!-- 미세 조정: 8개 슬라이더(가로 배치) -->
+    <section id="controls" class="section" aria-label="미세 조정" style="flex:1 1 60%; min-width:420px;">
+      <h2>미세 조정</h2>
+
+      <div class="slider-group">
+        <label for="neckCircumference" style="width:180px; color:#fff;">목둘레</label>
+        <input type="range" id="neckCircumference" min="28" max="60" value="38" step="0.01" />
+        <span id="neckCircumferenceValue" class="val">38.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="shoulderSpan" style="width:180px; color:#fff;">어깨사이길이</label>
+        <input type="range" id="shoulderSpan" min="60" max="140" value="100" step="0.01" />
+        <span id="shoulderSpanValue" class="val">100.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="chestCircumference" style="width:180px; color:#fff;">가슴둘레</label>
+        <input type="range" id="chestCircumference" min="70" max="140" value="110" step="0.01" />
+        <span id="chestCircumferenceValue" class="val">110.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="waistCircumference" style="width:180px; color:#fff;">허리둘레</label>
+        <input type="range" id="waistCircumference" min="50" max="120" value="90" step="0.01" />
+        <span id="waistCircumferenceValue" class="val">90.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="hipCircumference" style="width:180px; color:#fff;">엉덩이둘레</label>
+        <input type="range" id="hipCircumference" min="70" max="140" value="105" step="0.01" />
+        <span id="hipCircumferenceValue" class="val">105.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="armInsideLength" style="width:180px; color:#fff;">팔안쪽길이</label>
+        <input type="range" id="armInsideLength" min="40" max="120" value="60" step="0.01" />
+        <span id="armInsideLengthValue" class="val">60.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="legInsideLength" style="width:180px; color:#fff;">다리가쪽길이</label>
+        <input type="range" id="legInsideLength" min="60" max="140" value="90" step="0.01" />
+        <span id="legInsideLengthValue" class="val">90.00</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="neckToWaistVertical" style="width:180px; color:#fff;">목옆젖꼭지허리둘레선길이</label>
+        <input type="range" id="neckToWaistVertical" min="20" max="100" value="40" step="0.01" />
+        <span id="neckToWaistVerticalValue" class="val">40.00</span>
+      </div>
+    </section>
+  </main>
+
+  <section id="avatarArea" class="avatar-area" style="display:none;">
+    <h2>나의 아바타</h2>
+    <div id="avatarContainer" class="avatar-container"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
