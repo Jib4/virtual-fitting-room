@@ -5,87 +5,184 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>픽셀에 흩날리는 옷자락</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1 id="brand" style="cursor:pointer; text-align:center; color:#fff; margin:0; padding:8px 0;">
-      픽셀에 흩날리는 옷자락
-    </h1>
+    <div class="header-content">
+      <h1 id="brand">픽셀에 흩날리는 옷자락</h1>
+      <p class="subtitle">Virtual Fitting Room</p>
+    </div>
   </header>
 
   <main class="layout">
-    <!-- 스펙 입력 -->
-    <section id="specInput" class="section" aria-label="스펙 입력" style="flex:1 1 40%; min-width:260px;">
-      <h2>스펙 입력</h2>
-      <div class="spec-row" style="display:flex; align-items:center; gap:12px;">
-        <select id="gender" class="tiny" style="height:34px;">
-          <option value="M">남성</option>
-          <option value="F">여성</option>
-        </select>
-        <input id="height" class="tiny" type="number" placeholder="180" min="120" max="230" />
-        <input id="weight" class="tiny" type="number" placeholder="80" min="30" max="200" />
-        <button id="generateBtn" class="button" type="button" style="height:40px;">아바타 생성</button>
-      </div>
-    </section>
+    <div class="controls-column">
+      <section id="specInput" class="card" aria-label="기본 정보">
+        <div class="card-header">
+          <h2>기본 정보</h2>
+          <span class="step-badge">1</span>
+        </div>
+        <div class="card-body">
+          <div class="input-grid">
+            <div class="input-group">
+              <label for="gender">성별</label>
+              <select id="gender" class="form-control">
+                <option value="M">남성</option>
+                <option value="F">여성</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="height">키 (cm)</label>
+              <input id="height" class="form-control" type="number" placeholder="175" min="120" max="230" />
+            </div>
+            <div class="input-group">
+              <label for="weight">몸무게 (kg)</label>
+              <input id="weight" class="form-control" type="number" placeholder="70" min="30" max="200" />
+            </div>
+          </div>
+          <button id="generateBtn" class="btn-primary" type="button">아바타 생성</button>
+        </div>
+      </section>
 
-    <!-- 미세 조정: 8개 슬라이더(가로 배치) -->
-    <section id="controls" class="section" aria-label="미세 조정" style="flex:1 1 60%; min-width:420px;">
-      <h2>미세 조정</h2>
+      <section id="clothingSelect" class="card" aria-label="의류 선택">
+        <div class="card-header">
+          <h2>스타일링</h2>
+          <span class="step-badge">2</span>
+        </div>
+        <div class="card-body">
+          <div class="clothing-grid">
+            <div class="input-group">
+              <label for="topSelector">상의</label>
+              <select id="topSelector" class="form-control">
+                <option value="none">없음</option>
+                <option value="tee">티셔츠</option>
+                <option value="shirt">셔츠</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="bottomSelector">하의</label>
+              <select id="bottomSelector" class="form-control">
+                <option value="none">없음</option>
+                <option value="pants">바지</option>
+                <option value="skirt">치마</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="fitSelector">핏</label>
+              <select id="fitSelector" class="form-control">
+                <option value="slim">슬림핏</option>
+                <option value="regular" selected>레귤러</option>
+                <option value="oversized">오버핏</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="slider-group">
-        <label for="neckCircumference" style="width:180px; color:#fff;">목둘레</label>
-        <input type="range" id="neckCircumference" min="28" max="60" value="38" step="0.01" />
-        <span id="neckCircumferenceValue" class="val">38.00</span>
-      </div>
+      <section id="controls" class="card" aria-label="미세 조정">
+        <div class="card-header">
+          <h2>상세 치수 조정</h2>
+          <span class="step-badge">3</span>
+        </div>
+        <div class="card-body sliders-container" id="slidersContainer">
+          <div class="slider-section">
+            <h4 class="slider-section-title">상체</h4>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="neckCircumference">목둘레</label>
+                <span id="neckCircumferenceValue" class="val">37.7 cm</span>
+              </div>
+              <input type="range" id="neckCircumference" min="28" max="60" value="38" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="shoulderSpan" style="width:180px; color:#fff;">어깨사이길이</label>
-        <input type="range" id="shoulderSpan" min="60" max="140" value="100" step="0.01" />
-        <span id="shoulderSpanValue" class="val">100.00</span>
-      </div>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="shoulderSpan">어깨 너비</label>
+                <span id="shoulderSpanValue" class="val">45.1 cm</span>
+              </div>
+              <input type="range" id="shoulderSpan" min="60" max="140" value="100" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="chestCircumference" style="width:180px; color:#fff;">가슴둘레</label>
-        <input type="range" id="chestCircumference" min="70" max="140" value="110" step="0.01" />
-        <span id="chestCircumferenceValue" class="val">110.00</span>
-      </div>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="chestCircumference">가슴둘레</label>
+                <span id="chestCircumferenceValue" class="val">99.2 cm</span>
+              </div>
+              <input type="range" id="chestCircumference" min="70" max="140" value="110" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="waistCircumference" style="width:180px; color:#fff;">허리둘레</label>
-        <input type="range" id="waistCircumference" min="50" max="120" value="90" step="0.01" />
-        <span id="waistCircumferenceValue" class="val">90.00</span>
-      </div>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="waistCircumference">허리둘레</label>
+                <span id="waistCircumferenceValue" class="val">83.6 cm</span>
+              </div>
+              <input type="range" id="waistCircumference" min="50" max="120" value="90" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="hipCircumference" style="width:180px; color:#fff;">엉덩이둘레</label>
-        <input type="range" id="hipCircumference" min="70" max="140" value="105" step="0.01" />
-        <span id="hipCircumferenceValue" class="val">105.00</span>
-      </div>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="neckToWaistVertical">상체 길이</label>
+                <span id="neckToWaistVerticalValue" class="val">46.0 cm</span>
+              </div>
+              <input type="range" id="neckToWaistVertical" min="20" max="100" value="40" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="armInsideLength" style="width:180px; color:#fff;">팔안쪽길이</label>
-        <input type="range" id="armInsideLength" min="40" max="120" value="60" step="0.01" />
-        <span id="armInsideLengthValue" class="val">60.00</span>
-      </div>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="armInsideLength">팔 길이</label>
+                <span id="armInsideLengthValue" class="val">47.4 cm</span>
+              </div>
+              <input type="range" id="armInsideLength" min="40" max="120" value="60" step="0.1" disabled />
+            </div>
+          </div>
 
-      <div class="slider-group">
-        <label for="legInsideLength" style="width:180px; color:#fff;">다리가쪽길이</label>
-        <input type="range" id="legInsideLength" min="60" max="140" value="90" step="0.01" />
-        <span id="legInsideLengthValue" class="val">90.00</span>
-      </div>
+          <div class="slider-section">
+            <h4 class="slider-section-title">하체</h4>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="hipCircumference">엉덩이둘레</label>
+                <span id="hipCircumferenceValue" class="val">95.7 cm</span>
+              </div>
+              <input type="range" id="hipCircumference" min="70" max="140" value="105" step="0.1" disabled />
+            </div>
 
-      <div class="slider-group">
-        <label for="neckToWaistVertical" style="width:180px; color:#fff;">목옆젖꼭지허리둘레선길이</label>
-        <input type="range" id="neckToWaistVertical" min="20" max="100" value="40" step="0.01" />
-        <span id="neckToWaistVerticalValue" class="val">40.00</span>
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <label for="legInsideLength">다리 길이</label>
+                <span id="legInsideLengthValue" class="val">107.4 cm</span>
+              </div>
+              <input type="range" id="legInsideLength" min="60" max="140" value="90" step="0.1" disabled />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="preview-column">
+      <section id="avatarArea" class="card avatar-card" style="display:none;">
+        <div class="card-header centered">
+          <h2>나의 아바타</h2>
+        </div>
+        <div id="avatarContainer" class="avatar-container">
+          <!-- Avatar SVG and Info will be injected here -->
+        </div>
+        <div id="loadingState" class="loading-overlay" style="display:none;">
+          <div class="spinner"></div>
+          <p>생성 중...</p>
+        </div>
+      </section>
+      
+      <div id="placeholderState" class="placeholder-card">
+        <div class="placeholder-content">
+          <div class="icon-circle">?</div>
+          <h3>아바타를 생성해보세요</h3>
+          <p>왼쪽의 정보를 입력하고 '아바타 생성' 버튼을 눌러주세요.</p>
+        </div>
       </div>
-    </section>
+    </div>
   </main>
-
-  <section id="avatarArea" class="avatar-area" style="display:none;">
-    <h2>나의 아바타</h2>
-    <div id="avatarContainer" class="avatar-container"></div>
-  </section>
 
   <script src="script.js"></script>
 </body>
